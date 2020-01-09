@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<header>
+
+</header>
+<style>
+    #video {
+        border: 1px solid black;
+        box-shadow: 2px 2px 3px black;
+        width: 320px;
+        height: 240px;
+        background: #333;
+    }
+
+    #photo {
+        border: 1px solid black;
+        box-shadow: 2px 2px 3px black;
+        width: 320px;
+        height: 280px;
+        object-fit: cover;
+    }
+
+    #canvas {
+        display: none;
+    }
+
+    .camera-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        background: rgba(1, 54, 34, 0.8);
+        z-index: 10000000;
+    }
+    .camera-container{
+        display:flex;
+        align-content:center;
+        justify-content: center;
+        height: 100%;
+    }
+    .camera {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .output {
+        width: 100%;
+        display: inline-block;
+    }
+
+    #captureButton {
+        display: block;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        bottom: 32px;
+        background-color: rgba(24,55,92,0.5);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.2);
+        font-size: 14px;
+        font-family: "Lucida Grande", "Arial", sans-serif;
+        color: rgba(255, 255, 255, 1.0);
+    }
+
+    .contentarea {
+        font-size: 16px;
+        font-family: "Lucida Grande", "Arial", sans-serif;
+        width: 100%;
+        display: flex;
+        flex-direction:column;
+    }
+    #error-message{
+        text-align:center;
+    }
+
+</style>
+<body>
+<div>
+	<div class="camera-modal" id="cameraModal">
+		<div class="camera-container" id="cameraContainer">
+			<div class="camera">
+				<video id="video">Video stream not available.</video>
+				<button id="captureButton">Capture</button>
+
+				<div id="error-message"></div>
+				<br>
+				<button class="btn btn-primary" id="closeModalButton">Close</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="contentarea">
+		<canvas id="canvas"></canvas>
+		<div class="output">
+			<img id="photo" src="" class="animated" data-animation="fadeInUp">
+		</div>
+	</div>
+	
+	<input type="hidden" id="foto" name="foto">
+</div>
+<br>
+<button type="button" id="openCameraButton" class="btn btn-primary btn-block">
+	Open Camera
+</button>
+
+<script src="./webrtc.js"></script>
+</body>
